@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">day3</string>
+    <string name="grade_calculater">Grade Calculater :</string>
+    <string name="mid_terms_30">Mid terms 30%</string>
+</resources>
