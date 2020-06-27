@@ -2,33 +2,34 @@ package com.example.day3;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
-import android.text.InputFilter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
-
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         final EditText quiz = findViewById(R.id.editText);
         final EditText homework = findViewById(R.id.editText2);
         final EditText mid = findViewById(R.id.editText3);
         final EditText Final = findViewById(R.id.editText4);
         final TextView result = findViewById(R.id.textView6);
-               Button calc = findViewById(R.id.button2);
+        final    Button calc = findViewById(R.id.button2);
+        final Button reset = findViewById(R.id.button);
 
         calc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String num = quiz.getText().toString();
                 String num2 = homework.getText().toString();
                 String num3 = mid.getText().toString();
@@ -39,17 +40,29 @@ public class MainActivity extends AppCompatActivity {
                 double n3 = Double.parseDouble(num3);
                 double n4 = Double.parseDouble(num4);
 
-                double a = n1+n2+n3+n4 ;
+                double a = n1 + n2 + n3 + n4;
 
-                result.setText(student(a));
+                result.setText(String.valueOf(student(a)));
 
+                color(student(a));
 
             }
         });
 
+        reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-    }
-    public char student (double x)
+                quiz.setText("");
+                homework.setText("");
+                mid.setText("");
+                Final.setText("");
+
+            }
+        });
+
+        }
+    public static char student (double x)
     {
         if (( x < 60) && (0 < x))
         {
@@ -78,8 +91,30 @@ public class MainActivity extends AppCompatActivity {
 
         else { return 'E' ;}
 
+
+
+
+
+
     }
 
+    public  void color (char grade){
+        TextView result = findViewById(R.id.textView6);
+
+        if ( 'A' == grade ){
+            result.setTextColor(Color.rgb(0, 255,0));}
+        else if ('B' == grade ){
+            result.setTextColor(Color.rgb(255, 255,0)); }
+        else if ( 'C'== grade ){
+            result.setTextColor(Color.rgb(0, 0,255));}
+        else if ( 'D'== grade){
+            result.setTextColor(Color.rgb(127, 0,255));}
+        else if ( 'F' == grade){
+            result.setTextColor(Color.rgb(255, 0,0));}
+        else {  result.setTextColor(Color.rgb(255, 128,0));} }
+
+
+};
 
 
 
@@ -88,4 +123,17 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
